@@ -1,4 +1,7 @@
 import Database "./database";
+import Debug "mo:base/Debug";
+import Principal "mo:base/Principal";
+import Profile "mo:base/Bool";
 import Types "./types";
 import Utils "./utils";
 
@@ -14,6 +17,7 @@ actor LinkedUp{
     };
 
     public shared(msg) func create(profile:NewProfile): async Profile{
+        Debug.print("Caller is:  "#(Principal.toText(msg.caller)));
         let prof: Profile = directory.createOne(msg.caller, profile);
         return prof;
     };

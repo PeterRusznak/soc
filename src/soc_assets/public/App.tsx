@@ -1,8 +1,9 @@
 import React from 'react';
+import Create from './components/Create';
 const App = () => {
     return (
         <div>
-            TSX MEGY
+            <Create />
         </div>
     );
 }
