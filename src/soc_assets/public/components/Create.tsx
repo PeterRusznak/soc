@@ -10,6 +10,14 @@ const Create = () => {
     const [done, setDone] = useState(false);
     const [saving, setSaving] = useState(false);
 
+    interface UserIdl {
+        id: { toNumber(): number };
+        firstName: string;
+        lastName: string;
+        desc: string;
+    };
+
+
     const submit = async () => {
         setSaving(true)
         let newProfile = {
@@ -17,7 +25,10 @@ const Create = () => {
             lastName: last,
             desc: desc,
         };
-        await soc.create(newProfile);
+        soc.create(newProfile).then((ret: UserIdl) => {
+            console.log("Itt jön");
+            console.log(ret);
+        })
         setDone(true);
     }
     if (done) {

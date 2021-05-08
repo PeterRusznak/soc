@@ -12,10 +12,6 @@ actor LinkedUp{
     type Profile = Types.Profile;
     type UserId = Types.UserId;
 
-    public func healthcheck(): async Bool{
-        true;
-    };
-
     public shared(msg) func create(profile:NewProfile): async Profile{
         Debug.print("Caller is:  "#(Principal.toText(msg.caller)));
         let prof: Profile = directory.createOne(msg.caller, profile);
