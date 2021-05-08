@@ -9,7 +9,7 @@
         "soc"
       ],
       "frontend": {
-        "entrypoint": "src/soc_assets/public/index.js"
+        "entrypoint": "src/soc_assets/public/index.tsx"
       },
       "source": [
         "src/soc_assets/assets",
