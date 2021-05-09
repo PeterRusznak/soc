@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import soc from 'ic:canisters/soc';
 
-const Create = () => {
+export const Create = () => {
 
     const [first, setFirst] = useState('');
     const [last, setLast] = useState('');
     const [desc, setDesc] = useState('');
     const [done, setDone] = useState(false);
-
-
 
     interface UserIdl {
         id: { toNumber(): number };
@@ -18,18 +16,16 @@ const Create = () => {
         desc: string;
     };
 
-
     const submit = async (event) => {
         event.preventDefault();
-
         let newProfile = {
             firstName: first,
             lastName: last,
             desc: desc,
         };
-        soc.create(newProfile).then((ret: UserIdl) => {
-            setDone(true);
-        });
+        let ret: UserIdl = await soc.create(newProfile);
+        console.log(ret);
+        setDone(true);
     }
 
     if (done) {
@@ -64,6 +60,5 @@ const Create = () => {
             </div>
         </div>
     )
-}
+};
 
-export default Create
