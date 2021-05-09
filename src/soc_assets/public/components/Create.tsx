@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { UserIdl } from './utils'
+import NewUser from './NewUser'
 import soc from 'ic:canisters/soc';
 
 export const Create = () => {
@@ -8,13 +10,8 @@ export const Create = () => {
     const [last, setLast] = useState('');
     const [desc, setDesc] = useState('');
     const [done, setDone] = useState(false);
+    const [user, setUser] = useState({} as UserIdl);
 
-    interface UserIdl {
-        id: { toNumber(): number };
-        firstName: string;
-        lastName: string;
-        desc: string;
-    };
 
     const submit = async (event) => {
         event.preventDefault();
@@ -24,17 +21,17 @@ export const Create = () => {
             desc: desc,
         };
         let ret: UserIdl = await soc.create(newProfile);
-        console.log(ret);
+        console.log(ret.id);
+        setUser(ret);
         setDone(true);
     }
 
     if (done) {
-        return (<Redirect to='/newUser' />)
+        return (<NewUser user={user} />)
     }
 
     return (
         <div>
-
             <div className="form-group" >
                 <h2 className="text-center">Join us</h2>
 

@@ -15,7 +15,6 @@ const App = () => {
                 <Route path="/" exact>
                     <Create />
                 </Route>
-                <Route path="/newUser/"><NewUser /></Route>
             </Switch>
         </Router>
     );

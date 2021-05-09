@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import soc from 'ic:canisters/soc';
+import { UserIdl } from './utils'
 
-const NewUser = () => {
+const NewUser = (props: { user: UserIdl }) => {
+    const user = props.user;
+
+    useEffect(() => {
+
+    }, []);
+
+
     return (
         <div>
-            Nyú
+            {user.firstName}{user.lastName}{user.desc}
         </div>
     )
-}
+};
 
-export default NewUser
+export default NewUser;
+
+
+
