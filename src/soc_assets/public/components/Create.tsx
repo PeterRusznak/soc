@@ -7,8 +7,7 @@ const Create = () => {
     const [last, setLast] = useState('');
     const [desc, setDesc] = useState('');
 
-    const [done, setDone] = useState(false);
-    const [saving, setSaving] = useState(false);
+
 
     interface UserIdl {
         id: { toNumber(): number };
@@ -18,30 +17,25 @@ const Create = () => {
     };
 
 
-    const submit = async () => {
-        setSaving(true)
+    const submit = async (event) => {
+        event.preventDefault();
+
         let newProfile = {
             firstName: first,
             lastName: last,
             desc: desc,
         };
         soc.create(newProfile).then((ret: UserIdl) => {
-            console.log("Itt jön");
             console.log(ret);
         })
-        setDone(true);
-    }
-    if (done) {
-        setSaving(false);
-    }
-
-    if (saving) {
-        return (<progress />);
     }
 
     return (
         <div>
-            <form name="new-user" className="form-group" onSubmit={() => submit()}>
+
+            <div className="form-group" >
+                <h2 className="text-center">Join us</h2>
+
                 <div>
                     Firstname :
                     <input name="first" type="text" className="form-control"
@@ -59,11 +53,9 @@ const Create = () => {
                         onChange={ev => setDesc(ev.target.value)} />
                 </div>
 
-                <div >
-                    <button className="btn btn-primary" type="submit">
-                        Submit</button>
-                </div>
-            </form>
+                <button className="btn btn-success" onClick={submit}>Save</button>
+
+            </div>
         </div>
     )
 }
