@@ -12,7 +12,32 @@ const NewUser = (props: { user: UserIdl }) => {
 
     return (
         <div>
-            {user.firstName}{user.lastName}{user.desc}
+            <table className="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr >
+                        <td>
+                            < input name="name" value={user.firstName} type="text"
+                            />
+                        </td>
+                        <td>
+                            < input name="address" value={user.lastName} type="text"
+                            />
+                        </td>
+                        <td>
+                            < input name="email" value={user.desc} type="text"
+                            />
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
         </div>
     )
 };
