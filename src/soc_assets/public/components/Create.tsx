@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import soc from 'ic:canisters/soc';
 
 const Create = () => {
@@ -6,6 +7,7 @@ const Create = () => {
     const [first, setFirst] = useState('');
     const [last, setLast] = useState('');
     const [desc, setDesc] = useState('');
+    const [done, setDone] = useState(false);
 
 
 
@@ -26,8 +28,12 @@ const Create = () => {
             desc: desc,
         };
         soc.create(newProfile).then((ret: UserIdl) => {
-            console.log(ret);
-        })
+            setDone(true);
+        });
+    }
+
+    if (done) {
+        return (<Redirect to='/newUser' />)
     }
 
     return (
